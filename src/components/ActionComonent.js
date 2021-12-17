@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 export default function ActionComonent(props) {
   let type = "";
   const [value, setValue] = useState(0);
-  const [balance, setbalance] = useState(
-    window.localStorage.getItem("balance")
-      ? window.localStorage.getItem("balance")
-      : 550
-  );
+  const aa = window.localStorage.getItem("balance");
+  const [balance, setbalance] = useState(550);
 
   useEffect(() => {
-    setbalance(JSON.parse(window.localStorage.getItem("balance")));
+    if (window.localStorage.hasOwnProperty("balance")) {
+      setbalance(parseInt(window.localStorage.getItem("balance")));
+    } else {
+      setbalance(500);
+    }
   }, []);
 
   useEffect(() => {
